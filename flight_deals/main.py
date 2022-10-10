@@ -5,22 +5,26 @@ from data_manager import DataManager
 from flight_data import FlightData
 from datetime import datetime, timedelta
 from notification_manager import NotificationManager
+from user_manager import UserManager
 
 
 from_date = datetime.now() + timedelta(days=1)
 to_date = datetime.now() + timedelta(days=180)
 origin_city_code = 'LON'
 
-datamanger = DataManager()
+datamanager = DataManager()
 flight_search = FlightSearch()
-google_sheet = datamanger.get_sheet()
+user_manager = UserManager()
+notification_manager = NotificationManager()
+
+google_sheet = datamanager.get_sheet()
 
 for sheet in google_sheet:
     if sheet['iataCode'] == '':
         sheet['iataCode'] = flight_search.get_itacode(sheet['city'])
 
-datamanger.destination_data = google_sheet
-datamanger.put_iatacode()
+datamanager.destination_data = google_sheet
+datamanager.put_iatacode()
 
 for sheet in google_sheet:
     flight = flight_search.get_flight_data(
@@ -29,11 +33,19 @@ for sheet in google_sheet:
         from_date,
         to_date
     )
-
+    if flight == None:
+        continue
     if flight.price > sheet['Lowest Price']:
-        notification_manager = NotificationManager()
-        message = f"Low Price Alert!! from {flight.origin_city} airport {flight.origin_airport} to {flight.destination_city} price is {flight.price}"
-        notification_manager.send_sms(message)
+
+        users = datamanager.user_get_data()
+        emails = [row["email"] for row in users]
+        names = [row["firstName"] for row in users]
+        message = f"Low price alert! Only £{flight.price} to fly from {flight.origin_city}-{flight.origin_airport} to {flight.destination_city}-{flight.destination_airport}, from {flight.out_date} to {flight.return_date}."
+        if flight.stop_overs > 0:
+            message += f"\nFlight has {flight.stop_overs} stop over, via {flight.via_city}."
+
+        link = f"https://www.google.co.uk/flights?hl=en#flt={flight.origin_airport}.{flight.destination_airport}.{flight.out_date}*{flight.destination_airport}.{flight.origin_airport}.{flight.return_date}"
+        notification_manager.send_emails(emails, message, link)
 #print(datamanger.get_sheet())
 
 

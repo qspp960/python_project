@@ -23,7 +23,7 @@ class FlightSearch:
         return self.itacode
 
     def get_flight_data(self,origin_city_code,destination_city_code,from_time,to_time):
-        self.params = {
+        query = {
            'fly_from': origin_city_code,
            'fly_to': destination_city_code,
            'date_from': from_time.strftime('%d/%m/%Y'),
@@ -35,19 +35,41 @@ class FlightSearch:
            'max_stopovers': 0,
            'curr': 'GBP'
         }
-        self.response = requests.get(url=FLIGHT_DATA_END_POINT, params=self.params, headers=self.headers)
-        data = self.response.json()['data'][0]
+        self.response = requests.get(url=FLIGHT_DATA_END_POINT, params=query, headers=self.headers)
 
-        flight_data = FlightData(
-            data['price'],
-            data['route']['cityFrom'],
-            data['route']['flyFrom'],
-            data['route']['cityTo'],
-            data['route']['flyTo'],
-            data['route'][0]['local_departure'].split('T')[0],
-            data['route'][1]['local_departure'].split('T')[0],
-        )
-        return flight_data
+        try:
+            data = self.response.json()['data'][0]
+            print(f'{destination_city_code}: {data["price"]}')
+        except IndexError:
+            query['max_stopovers'] = 1
+
+            response = requests.get(url=FLIGHT_DATA_END_POINT, params=query, headers=self.headers)
+            data = response.json()['data'][0]
+
+            flight_data = FlightData(
+                data['price'],
+                data['route']['cityFrom'],
+                data['route']['flyFrom'],
+                data['route']['cityTo'],
+                data['route']['flyTo'],
+                data['route'][0]['local_departure'].split('T')[0],
+                data['route'][1]['local_departure'].split('T')[0],
+                max_stopovers=1,
+                via_city=data["route"][0]["cityTo"],
+            )
+
+            return flight_data
+        else:
+            flight_data = FlightData(
+                data['price'],
+                data['route']['cityFrom'],
+                data['route']['flyFrom'],
+                data['route']['cityTo'],
+                data['route']['flyTo'],
+                data['route'][0]['local_departure'].split('T')[0],
+                data['route'][1]['local_departure'].split('T')[0],
+            )
+            return flight_data
 
 
 
