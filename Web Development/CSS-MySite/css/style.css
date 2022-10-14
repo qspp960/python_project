@@ -12,25 +12,29 @@ body {
 }
 
 .middle-container{
-    background-color: #f33;
-    height: 200px;
-    width: 200px;
 }
 
 .bottom-container {
-    background-color: blue;
-    height: 200px;
-    width: 200px;
+
 }
 
 h1 {
-    margin-top: 0px;
-    margin-bottom: 20px;
+    font-size: 5.625rem;
+    color: #66BFBF;
+    margin: 50px auto 0 auto;
+    font-family: 'Sacramento', cursive;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: normal;
+    color: #66BFBF;
     font-family: 'Montserrat', sans-serif;
 }
 
 h3 {
-    font-family: 'Sacramento', cursive;
+    color: #11199E;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .top-cloud{
@@ -41,4 +45,16 @@ h3 {
 
 .bottom-cloud{
     position: absolute;
+}
+
+.footer-link {
+    color: #11199E;
+}
+
+
+.skill-row{
+    text-align: left;
+    line-height: 2;
+    width: 50%;
+    margin: 100px auto 100px auto;
 }
