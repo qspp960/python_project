@@ -8,14 +8,19 @@ body {
 .top-container {
       background-color: #CDF0EA;
       position: relative;
-      padding-top: 100px;
+      padding-top: 50px;
 }
 
 .middle-container{
+
+    padding-top: 50px;
 }
 
 .bottom-container {
-
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 50px;
+    background-color: #66BFBF;
 }
 
 h1 {
@@ -52,9 +57,59 @@ h3 {
 }
 
 
+.profile{
+    width: 50%;
+    margin: 50px auto 100px auto;
+}
+.skills {
+    margin: 100px auto 100px auto;
+}
 .skill-row{
     text-align: left;
     line-height: 2;
     width: 50%;
     margin: 100px auto 100px auto;
+}
+
+.planning-img {
+    width: 25%;
+    float: left;
+    margin-right: 30px;
+}
+
+.web-img{
+    width: 25%;
+    float: right;
+    margin-left: 30px;
+}
+
+.dotted-line{
+    border-style: dotted;
+    border-width: thick;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+    width: 3%;
+    color: gray;
+    margin: 100px auto;
+}
+
+.contact-me {
+    margin: 100px auto 100px auto;
+}
+
+.bottom-line{
+    border-bottom: none;
+    margin: 0;
+}
+
+.intro{
+    line-height: 2;
+    width: 30%;
+    margin: 30px auto 30px auto;
+}
+
+.contact-message{
+    width: 30%;
+    margin: 50px auto;
 }
