@@ -1,0 +1,25 @@
+h1 {
+    font-family: 'Montserrat-Black";
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#title{
+    background-color: #ff4c68;
+}
+
+.container-fluid {
+    padding: 3% 15%;
+}
+
+.navbar {
+    margin-bottom: 13%;
+}
+
+.btn {
+    margin-top: 5%;
+    margin-right: 3%;
+}
+.rotated_img {
+    transform: rotate(30deg);
+}
