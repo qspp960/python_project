@@ -8,6 +8,11 @@ h1 {
     line-height: 1.5;
 }
 
+h2 {
+    font-family: "Montserrat-Bold";
+    font-size: 3rem;
+    line-height: 1.5;
+}
 #title{
     background-color: #ff4c68;
     color: #fff;
@@ -55,7 +60,7 @@ h1 {
 
 .feature-img {
     margin-bottom: 1rem;
-    color: #ffC0CB;
+    color: #EF8172;
 }
 
 .feature-img:hover {
@@ -72,3 +77,26 @@ h1 {
     color: #C0C0C0;
 }
 
+#testimonials {
+    padding: 7% 15%;
+    text-align: center;
+    background-color: #EF8172;
+    color: #FFF;
+}
+
+.testimonials-img{
+    width: 10%;
+    border-radius: 100%;
+    margin: 20px;
+}
+
+#press {
+    text-align: center;
+    background-color: #EF8172;
+    padding-bottom: 5%;
+}
+
+.press-img {
+    width: 15%;
+    margin: 20px 20px 50px;
+}
