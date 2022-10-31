@@ -47,11 +47,15 @@ h2 {
 }
 .title-img {
     transform: rotate(25deg);
-    width: 50%;
+    width: 20%;
+    position: absolute;
 }
 
 #features {
     padding: 7% 15%;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
 }
 .feature {
     text-align: center;
@@ -102,4 +106,14 @@ h2 {
 .press-img {
     width: 15%;
     margin: 20px 20px 50px;
+}
+
+
+#pricing {
+    padding: 100px;
+    text-align: center;
+}
+
+.price-column {
+    padding: 5% 3%;
 }
